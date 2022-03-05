@@ -1,0 +1,1 @@
+console.log("Welcom in JavaScripty")
