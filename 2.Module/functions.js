@@ -31,3 +31,12 @@ let a= function sum(num1,num2)
     return num1+num2;
 }
 console.log(a(45,5));
+//IIFE
+(function(){
+    console.log("says hello from IIFE");
+})();
+
+
+(function(num1,num2){
+   console.log("Division :> "+num1/num2);
+})(10,5);
