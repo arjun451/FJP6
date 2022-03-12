@@ -31,3 +31,21 @@ console.log(CapAmea.friends);
 console.log(CapAmea.Address.State);
 // call the Function
 CapAmea.saysHay();
+
+
+// Add a key in the object
+CapAmea.Movies=['Civial war','Averanger','EndGame'];
+console.log(CapAmea);
+
+
+//Delete a key from the object
+delete CapAmea.Movies;
+console.log(CapAmea);
+
+
+//Modify the value of a key
+CapAmea.age=199;
+console.log(CapAmea.age);
+
+//Second method to acces the a key
+console.log(CapAmea["Address"]["State"]);
