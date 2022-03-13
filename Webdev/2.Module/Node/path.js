@@ -13,3 +13,7 @@ let  b=path.basename("C:\Users\Lenovo\Desktop\FJP6\Webdev\2.Module\Node\path.js"
 console.log(b);
 console.log(__dirname);
 console.log(__filename);
+
+let dir_path = __dirname;
+let newFile = path.join(dir_path,"newfile.js");
+console.log(newFile);
