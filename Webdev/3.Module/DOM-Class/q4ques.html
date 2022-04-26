@@ -20,6 +20,12 @@
     </ul>
     <script>
       //insertBefore
+      let liTag = document.createElement("li");
+      liTag.innerText ="7";
+      console.log(liTag);
+      let allLi = document.querySelectorAll("li");
+      let parent = document.querySelector("ul");
+      parent.insertBefore(liTag,allLi[6]);
     </script>
   </body>
 </html>
