@@ -33,7 +33,7 @@ if(fileexist)
    {
      let exta = path.extname(files[i]);
      let folderName = GiveFolderName(exta);
-     let orgfopath=path.join(__dirname,"Download",folderName);
+     let orgfopath=path.join(__dirname,folderName);
      let exets=fs.existsSync(orgfopath);
       if(exets)
       {
@@ -70,5 +70,5 @@ function moveFile(folderpath,orgfopath,files)
   let sorce = path.join(folderpath,files);
   let dest = path.join(orgfopath,files);
   fs.copyFileSync(sorce,dest);
- // fs.unlinkSync(sorce);
+ fs.unlinkSync(sorce);
 }
