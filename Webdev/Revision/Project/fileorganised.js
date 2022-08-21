@@ -20,7 +20,15 @@ if(fs.existsSync(folderPath))
      for(let i=0; i<folgerContain.length;i++)
      {
         let ext = path.extname(folgerContain[i]);
-        console.log(ext+" ");
+        // console.log(ext+" -->"+GivefolderName(ext));
+        let DestfolderPath  = path.join(__dirname ,GivefolderName(ext));
+        if(!fs.existsSync(DestfolderPath))
+        {
+          fs.mkdirSync(DestfolderPath);
+        }
+        let src = path.join(folderPath,folgerContain[i]);
+        DestfolderPath = path.join(DestfolderPath,folgerContain[i]);
+        MoveFileIncorrectFolder(src,DestfolderPath);
      }
 
 }
@@ -29,4 +37,27 @@ else
     console.log("Given path  "+folderPath+ "  is invalied");
 }
 
-function 
+function GivefolderName(ext)
+{
+   for(let key in extension)
+   {
+    let extArray = extension[key];
+    for(let i=0;i< extArray.length;i++)
+    {
+      if(extArray[i]==ext)
+      {
+        return key;
+      }
+    }
+   }
+   return 'Others'
+}
+function MoveFileIncorrectFolder(src,dst)
+{
+     
+      fs.copyFileSync(src,dst);
+      fs.unlinkSync(src);
+    // console.log("sourcePath ---> "+src);
+    // console.log("DestPath ---> "+dst);
+    
+}
