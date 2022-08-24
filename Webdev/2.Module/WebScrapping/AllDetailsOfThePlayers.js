@@ -3,7 +3,7 @@ const request = require('request');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
-const link="https://www.espncricinfo.com/series/ipl-2021-1249214/royal-challengers-bangalore-vs-kolkata-knight-riders-eliminator-1254115/full-scorecard";
+const link="https://www.espncricinfo.com/series/ipl-2021-1249214/rajasthan-royals-vs-mumbai-indians-51st-match-1254093/full-scorecard";
 //find the html content
 request(link,cb);
 
