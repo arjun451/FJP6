@@ -18,27 +18,36 @@ function cb(error , response, html)
         // console.log(html);
         const dom = new JSDOM(html);
         const document  = dom.window.document;
-        let allBolower = document.querySelectorAll(".ds-w-full.ds-table.ds-table-xs.ds-table-fixed");
-        // console.log(allBolower.length);
+        let allPlayer = document.querySelectorAll(".ds-w-full.ds-table.ds-table-md.ds-table-auto.ci-scorecard-table tbody tr td a");
+        console.log(allPlayer.length);
          
-        for(let i=0;i<allBolower.length;i=i+2)
-        {
-            let row = allBolower[i].querySelectorAll("tbody tr");
-            // console.log(row.length);
-            for(let j=0;j<row.length;j++)
-            {
-                let col = row[j].querySelectorAll("td");
-                if(col.length>)
-                {
-                    let Name = col[0].textContent;
-                   
-                    console.log("Name of Players--->>",  Name);
-                    
-                }
-            }
-        }
+         for(let i=0;i<allPlayer.length;i++)
+         {
+            // console.log(allPlayer[i].textContent+" --->",allPlayer[i].href);
+            let playerLink = "https://www.espncricinfo.com"+allPlayer[i].href;
+            // console.log(playerLink);
+            request(playerLink,cb2);
+
+         }
        
 
     }
 }
 
+function cb2(error,response,html)
+{
+    if(error)
+    {
+      console.log(error);
+    }
+    else{  
+        //  console.log(html);
+       
+         const dom = new JSDOM(html);
+         const document = dom.window.document;
+         let playerInformation = document.querySelectorAll(".ds-text-title-s.ds-font-bold.ds-text-ui-typo h5");
+
+         console.log("Name :"+playerInformation[0].textContent,  " DOB :"+playerInformation[1].textContent);
+        
+    }
+}
