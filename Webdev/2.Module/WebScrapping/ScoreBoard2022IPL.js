@@ -2,6 +2,8 @@ const request = require('request');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 const fs = require('fs');
+let xlsx = require("json-as-xlsx")
+
 const link = "https://www.espncricinfo.com/series/ipl-2021-1249214/match-schedule-fixtures-and-results";
 request(link,cb);
 let leaboard = [];
@@ -68,8 +70,32 @@ function cb2(error,response,html)
         if(count==0)
         {
             // console.log(leaboard);
-            let data = JSON.stringify(leaboard);
-            fs.writeFileSync("LeaderboardFile.json",data);
+            let Josndata = JSON.stringify(leaboard);
+            // fs.writeFileSync("LeaderboardFile.json",data);
+            leaboard.sort((a, b) => b.Runs - a.Runs);
+            let data = [
+                {
+                  sheet: "LeaderBoard",
+                  columns: [
+                    { label: "Name", value: "Name" }, // Top level data
+                    { label: "Innings", value:  "Innings" }, // Custom format
+                    { label: "Runs", value: "Runs"}, // Run functions
+                    {label:"Balls",value:"Balls"},
+                    {label:"Fours",value:"Fours"},
+                    {label:"Sixes",value:"Sixes"},
+                    
+                  ],
+                  content:leaboard
+                }
+              ]
+              
+              let settings = {
+                fileName: "IPL", // Name of the resulting spreadsheet
+                extraLength: 3, // A bigger number means that columns will be wider
+                writeOptions: {}, // Style options from https://github.com/SheetJS/sheetjs#writing-options
+              }
+              
+              xlsx(data, settings)
         }
     }
 }
